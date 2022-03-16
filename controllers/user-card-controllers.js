@@ -204,10 +204,10 @@ const updateUserCardByID = async (req, res, next) => {
   const immutableAttributesArray = ["userCardID", "userID", "cardID"];
   for (key in req.body) {
     const keyExists = typeof userCard.getDataValue(key) !== undefined;
-    const keyIsMutable = immutableAttributesArray.indexOf(key) === -1;
-
+    const keyIsMutable = immutableAttributesArray.includes(key) === false;
     if (keyExists && keyIsMutable) {
-      userCard[key] = req.body[key];
+      const value = req.body[key];
+      userCard.setDataValue(key, value);
     }
   }
 
