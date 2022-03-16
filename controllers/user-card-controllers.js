@@ -52,7 +52,6 @@ const getAllUserCardsByUserID = async (req, res, next) => {
   });
 };
 
-// does this auto join?
 const getUserCardByID = async (req, res, next) => {
   const userCardID = req.params.userCardID;
   let userCard;
@@ -171,8 +170,7 @@ const fetchCardDetails = async (req, res, next) => {
     );
     return next(error);
   }
-  console.log(req.body);
-  console.log(convertInputCardExpiryToISOString(cardExpiry));
+
   if (!userCard) {
     const error = new HttpError(
       "User card does not exist or input card details are invalid",

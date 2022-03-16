@@ -6,8 +6,8 @@ dotenv.config();
 const { sequelize } = require("./util/database");
 const { errorHandler } = require("./middleware/error-handler");
 
-const cardRoutes = require("./routes/card-routes");
 const userCardRoutes = require("./routes/user-card-routes");
+const cardRoutes = require("./routes/card-routes");
 
 const app = express();
 
@@ -24,8 +24,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/card", cardRoutes);
 app.use("/api/card", userCardRoutes);
+app.use("/api/card", cardRoutes);
 
 app.use(errorHandler);
 

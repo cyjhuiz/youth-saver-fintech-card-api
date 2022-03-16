@@ -11,7 +11,7 @@ const {
 
 const router = express.Router();
 
-router.get("/userCard/", getAllUserCardsByUserID);
+router.get("/userCard", getAllUserCardsByUserID);
 
 router.get("/userCard/:userCardID", getUserCardByID);
 
