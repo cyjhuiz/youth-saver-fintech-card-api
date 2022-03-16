@@ -7,6 +7,7 @@ const { sequelize } = require("./util/database");
 const { errorHandler } = require("./middleware/error-handler");
 
 const cardRoutes = require("./routes/card-routes");
+const userCardRoutes = require("./routes/user-card-routes");
 
 const app = express();
 
@@ -24,20 +25,20 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/card", cardRoutes);
+app.use("/api/card", userCardRoutes);
 
 app.use(errorHandler);
 
 sequelize
-    .sync()
-    .then((result) => {
-        console.log(result);
+  .sync()
+  .then((result) => {
+    console.log(result);
 
-        const PORT = process.env.PORT || 5000;
-        app.listen(PORT, () => {
-            console.log(`Server is running on ${PORT}`);
-        });
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server is running on ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  });

@@ -24,9 +24,11 @@ const generateCardNumber = () => {
 const generateCardExpiry = (cardLifeDurationInYears) => {
   const todaysDate = new Date();
   const expiryDate = new Date(
-    (year = todaysDate.getFullYear() + cardLifeDurationInYears),
-    (month = todaysDate.getMonth() + 1),
-    (day = 0) // last day of the month
+    Date.UTC(
+      (year = todaysDate.getFullYear() + cardLifeDurationInYears),
+      (month = todaysDate.getMonth() + 1),
+      (day = 0) // last day of the month
+    )
   );
   return expiryDate.toISOString();
 };
@@ -59,11 +61,9 @@ const convertInputCardExpiryToISOString = (inputCardExpiry) => {
   // get MM and YY to convert to desired date format, suitable to construct date object
   // then convert date object to ISOString
   [MM, YY] = inputCardExpiry.split("/", -1);
-
   const year = "20" + YY;
-  const month = parseInt(MM);
-  let date = new Date(year, month, 0);
-  console.log(date.toISOString(), "hihihi");
+  const month = MM;
+  let date = new Date(Date.UTC(year, MM, 0));
 
   return date.toISOString();
 };
