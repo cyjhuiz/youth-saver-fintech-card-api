@@ -1,0 +1,28 @@
+{
+  "name": "youth-saver-fintech-card-api",
+  "version": "1.0.0",
+  "description": "Card API, to perform credit/debit card functions for processing payments through YouthSaver programme. Credits stored will be for simulation purposes",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyjhuiz/youth-saver-fintech-card-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyjhuiz/youth-saver-fintech-card-api/issues"
+  },
+  "homepage": "https://github.com/cyjhuiz/youth-saver-fintech-card-api#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "random": "^3.0.6",
+    "sequelize": "^6.17.0"
+  }
+}
