@@ -29,6 +29,7 @@ const getAllUserCardsByUserID = async (req, res, next) => {
         include: [
           sequelize.col("card.cardName", "cardName"),
           sequelize.col("card.cardType", "cardType"),
+          sequelize.col("card.cardImageUrl", "cardImageUrl"),
         ],
       },
       include: [
@@ -65,6 +66,7 @@ const getUserCardByID = async (req, res, next) => {
         include: [
           sequelize.col("card.cardName", "cardName"),
           sequelize.col("card.cardType", "cardType"),
+          sequelize.col("card.cardImageUrl", "cardImageUrl"),
         ],
       },
       include: [

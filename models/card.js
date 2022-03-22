@@ -31,6 +31,12 @@ const Card = sequelize.define(
       allowNull: false,
       primaryKey: false,
     },
+    cardImageUrl: {
+      type: STRING,
+      autoIncrement: false,
+      allowNull: false,
+      primaryKey: false,
+    },
   },
   sequelizeConfig
 );
