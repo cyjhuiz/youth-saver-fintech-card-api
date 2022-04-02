@@ -57,6 +57,19 @@ const generateCreditLimit = (cardID) => {
   return creditLimit;
 };
 
+const generateWithdrawalLimit = (cardID) => {
+  let withdrawalLimit = null;
+
+  // withdrawalLimit is dependent on card scheme, but in this case,
+  // withdrawal limit is 0 for YouthSaver Cards by default, which cardID == 1.
+  // If not YouthSaver, return default null value (no credit limit)
+  if (cardID == 1) {
+    withdrawalLimit = 0;
+  }
+
+  return withdrawalLimit;
+};
+
 const convertInputCardExpiryToISOString = (inputCardExpiry) => {
   // get MM and YY to convert to desired date format, suitable to construct date object
   // then convert date object to ISOString
@@ -72,4 +85,5 @@ exports.generateCardNumber = generateCardNumber;
 exports.generateCardExpiry = generateCardExpiry;
 exports.generateCardCvcNumber = generateCardCvcNumber;
 exports.generateCreditLimit = generateCreditLimit;
+exports.generateWithdrawalLimit = generateWithdrawalLimit;
 exports.convertInputCardExpiryToISOString = convertInputCardExpiryToISOString;

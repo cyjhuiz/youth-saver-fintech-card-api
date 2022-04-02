@@ -16,7 +16,7 @@ const UserCard = sequelize.define(
       primaryKey: true,
     },
     userID: {
-      type: INTEGER,
+      type: STRING,
       autoIncrement: false,
       allowNull: false,
       primaryKey: false,
@@ -58,12 +58,18 @@ const UserCard = sequelize.define(
       primaryKey: false,
     },
     associatedAccountID: {
-      type: INTEGER,
+      type: STRING,
       autoIncrement: false,
       allowNull: false,
       primaryKey: false,
     },
     creditLimit: {
+      type: FLOAT,
+      autoIncrement: false,
+      allowNull: true,
+      primaryKey: false,
+    },
+    withdrawalLimit: {
       type: FLOAT,
       autoIncrement: false,
       allowNull: true,

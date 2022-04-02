@@ -11,6 +11,7 @@ const {
   generateCardExpiry,
   generateCardCvcNumber,
   generateCreditLimit,
+  generateWithdrawalLimit,
   convertInputCardExpiryToISOString,
 } = require("../util/user-card-util");
 
@@ -133,6 +134,7 @@ const createUserCard = async (req, res, next) => {
       cardExpiry: generateCardExpiry(cardLifeDurationInYears),
       associatedAccountID: associatedAccountID,
       creditLimit: generateCreditLimit(cardID),
+      withdrawalLimit: generateWithdrawalLimit(cardID),
       isActivated: false,
     });
   } catch (err) {
