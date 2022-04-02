@@ -230,6 +230,55 @@ const updateUserCardByID = async (req, res, next) => {
   });
 };
 
+const updateUserCard = async (req, res, next) => {
+  const { userID, cardID } = req.query;
+
+  let userCard;
+  try {
+    userCard = await UserCard.findOne({
+      where: {
+        userID,
+        cardID,
+      },
+    });
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not update user card details",
+      500
+    );
+    return next(error);
+  }
+
+  if (!userCard) {
+    const error = new HttpError("User card being updated does not exist", 404);
+    return next(error);
+  }
+
+  const immutableAttributesArray = ["userCardID", "userID", "cardID"];
+  for (key in req.body) {
+    const keyExists = typeof userCard.getDataValue(key) !== undefined;
+    const keyIsMutable = immutableAttributesArray.includes(key) === false;
+    if (keyExists && keyIsMutable) {
+      const value = req.body[key];
+      userCard.setDataValue(key, value);
+    }
+  }
+
+  try {
+    await userCard.save();
+  } catch (err) {
+    const error = new HttpError(
+      "Something went wrong, could not update user card",
+      500
+    );
+    return next(error);
+  }
+
+  return res.status(200).json({
+    userCardID: userCard.userCardID,
+  });
+};
+
 const deleteUserCardByID = async (req, res, next) => {
   const userCardID = req.params.userCardID;
 
@@ -269,4 +318,5 @@ exports.getUserCardByID = getUserCardByID;
 exports.createUserCard = createUserCard;
 exports.fetchCardDetails = fetchCardDetails;
 exports.updateUserCardByID = updateUserCardByID;
+exports.updateUserCard = updateUserCard;
 exports.deleteUserCardByID = deleteUserCardByID;

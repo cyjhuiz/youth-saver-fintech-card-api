@@ -6,6 +6,7 @@ const {
   createUserCard,
   fetchCardDetails,
   updateUserCardByID,
+  updateUserCard,
   deleteUserCardByID,
 } = require("../controllers/user-card-controllers");
 
@@ -20,6 +21,8 @@ router.post("/userCard", createUserCard);
 router.post("/userCard/cardDetails", fetchCardDetails);
 
 router.put("/userCard/:userCardID", updateUserCardByID);
+
+router.put("/userCard", updateUserCard);
 
 router.delete("/userCard/:userCardID", deleteUserCardByID);
 
